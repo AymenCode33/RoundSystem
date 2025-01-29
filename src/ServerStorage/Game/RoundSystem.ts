@@ -6,5 +6,15 @@ const Players = game.GetService("Players");
 // Fonctions
 
 function StartGame() {
-	const EligiblePlayer = {};
+	const EligiblePlayer: Player[] = [];
+
+	for (const player of Players.GetPlayers()) {
+		if (player.GetAttribute("AFK") === false) {
+			EligiblePlayer.insert(EligiblePlayer.size(), player);
+		}
+	}
+
+	return EligiblePlayer;
 }
+
+export { StartGame };
